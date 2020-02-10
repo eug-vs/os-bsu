@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <windows.h>
 
+
+struct employee {
+  int num;
+  char name[10];
+  double hours;
+};
+
+
 int main(int argc, char** argv) {
   printf("creator: started\n");
 
