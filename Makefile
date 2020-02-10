@@ -1,13 +1,20 @@
 SOURCE_DIR=src
 BUILD_DIR=build
+CC=gcc
+WINCC=i686-w64-mingw32-gcc
+
+ALL = $(addsuffix .exe, $(basename $(addprefix $(BUILD_DIR)/, $(notdir $(wildcard src/*.c)))))
 
 .PHONY: clean
 .PRECIOUS: $(BUILD_DIR)/%.test
 
-all: $(BUILD_DIR)/main
+all: $(ALL)
 
 $(BUILD_DIR)/%: $(SOURCE_DIR)/%.c | $(BUILD_DIR)
-	gcc $< -o $@ -Wall
+	$(CC) $< -o $@ -Wall
+
+$(BUILD_DIR)/%.exe: $(SOURCE_DIR)/%.c | $(BUILD_DIR)
+	$(WINCC) $< -o $@ -Wall
 
 $(BUILD_DIR):
 	@mkdir $@
