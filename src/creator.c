@@ -24,7 +24,6 @@ int main(int argc, char** argv) {
     printf("\n");
   }
 
-  printf("creator: finished\n");
   return 0;
 }
 
