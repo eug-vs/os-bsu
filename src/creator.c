@@ -1,12 +1,4 @@
-#include <stdio.h>
-#include <windows.h>
-
-
-typedef struct {
-  int num;
-  char name[10];
-  double hours;
-} Employee;
+#include "header.h"
 
 
 int main(int argc, char** argv) {
