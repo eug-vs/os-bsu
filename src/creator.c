@@ -6,24 +6,26 @@ typedef struct {
   int num;
   char name[10];
   double hours;
-} employee;
+} Employee;
 
 
 int main(int argc, char** argv) {
-  const char* FILENAME = argv[1];
-  const int RECORDS = atoi(argv[2]);
+  FILE* file = fopen(argv[1], "wb");
+  int records = atoi(argv[2]);
 
-  for (int i = 0; i < RECORDS; i++) {
-    employee emp;
+  for (int i = 0; i < records; i++) {
+    Employee e;
     printf("Employee #");
-    scanf("%d", &emp.num);
+    scanf("%d", &e.num);
     printf("Name: ");
-    scanf("%s", emp.name);
+    scanf("%s", e.name);
     printf("Hours: ");
-    scanf("%lf", &emp.hours);
+    scanf("%lf", &e.hours);
     printf("\n");
+    fwrite(&e, sizeof(Employee), 1, file);
   }
 
+  fclose(file);
   return 0;
 }
 

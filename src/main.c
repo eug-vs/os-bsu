@@ -3,7 +3,7 @@
 
 
 int main() {
-  char* cmd = "build\\creator.exe filename 2";
+  char* cmd = "build\\creator.exe data 2";
 
   STARTUPINFO info = {sizeof(info)};
   PROCESS_INFORMATION processInfo;
