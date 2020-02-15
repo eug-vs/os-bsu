@@ -2,7 +2,7 @@
 
 
 int main(int argc, char** argv) {
-  FILE* file = fopen(argv[1], "wb");
+  FILE* file = fopen(argv[1], "wb+");
   int records = atoi(argv[2]);
 
   for (int i = 0; i < records; i++) {

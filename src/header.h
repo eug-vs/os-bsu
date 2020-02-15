@@ -9,3 +9,5 @@ typedef struct {
   double hours;
 } Employee;
 
+void await(char* cmd);
+
