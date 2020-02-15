@@ -29,7 +29,7 @@ int main() {
   sprintf(cmd, "build\\creator.exe %s %s", binary_path, records);
   await(cmd);
 
-  FILE* file = fopen("data", "rb");
+  FILE* file = fopen(binary_path, "rb");
   char c;
   if (file == NULL) return 1;
   printf("Binary file saved to %s with the following contents:\n", binary_path);
