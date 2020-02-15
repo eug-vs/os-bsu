@@ -14,30 +14,39 @@ void await(char* cmd) {
 
 
 int main() {
-  char filepath[64];
+  char binary_path[64];
+  char report_path[64];
   char records[8];
   double hour_payment;
-  char cmd[128];
+  char cmd[256];
 
 
   printf("Enter binary file path: ");
-  scanf("%s", filepath);
+  scanf("%s", binary_path);
   printf("Enter records number: ");
   scanf("%s", records);
   puts("");
-  sprintf(cmd, "build\\creator.exe %s %s", filepath, records);
+  sprintf(cmd, "build\\creator.exe %s %s", binary_path, records);
   await(cmd);
 
   FILE* file = fopen("data", "rb");
   char c;
   if (file == NULL) return 1;
-  printf("Binary file saved to %s with the following contents:\n", filepath);
+  printf("Binary file saved to %s with the following contents:\n", binary_path);
   do {
     c = fgetc(file);
     printf("%c", c);
   } while (c != EOF);
   fclose(file);
   puts("");
+
+  printf("Enter report path: ");
+  scanf("%s", report_path);
+  printf("Enter payment amount per hour: ");
+  scanf("%lf", &hour_payment);
+  puts("");
+  sprintf(cmd, "build\\reporter.exe %s %s %lf", binary_path, report_path, hour_payment);
+  await(cmd);
 
   return 0;
 }
