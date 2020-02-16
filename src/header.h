@@ -11,3 +11,5 @@ typedef struct {
 
 void await(char* cmd);
 
+void cat(char* filename, char* mode);
+
