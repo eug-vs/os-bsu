@@ -10,49 +10,47 @@ void await(char* cmd) {
   } else puts("Error while creating process!");
 }
 
-void cat(char* filepath, char* mode) {
+void cat(char* filepath, int is_binary) {
   char c;
   FILE* file;
 
-  if ((file = fopen(filepath, mode))) {
+  if ((file = fopen(filepath, is_binary? "rb" : "r"))) {
     do {
       c = fgetc(file);
       printf("%c", c);
     } while (c != EOF);
+    printf("\n\n");
     fclose(file);
-    puts("");
   } else puts("Error while reading file!");
 }
 
 
 int main() {
   char cmd[256];
-  char binary_path[64];
-  char report_path[64];
+  char binary[64];
+  char report[64];
   char records[8];
-  double hour_payment;
+  double payment;
 
-  printf("Enter binary file path: ");
-  scanf("%s", binary_path);
+  printf("Enter binary filename: ");
+  scanf("%s", binary);
   printf("Enter records number: ");
   scanf("%s", records);
   puts("");
-  sprintf(cmd, "build\\creator.exe %s %s", binary_path, records);
+  sprintf(cmd, "build\\creator.exe %s %s", binary, records);
   await(cmd);
-  printf("Binary file saved to \"%s\" with the following contents:\n", binary_path);
-  cat(binary_path, "rb");
+  printf("Binary file saved to \"%s\" with the following contents:\n", binary);
+  cat(binary, 1);
 
-  puts("");
-
-  printf("Enter report path: ");
-  scanf("%s", report_path);
+  printf("Enter report filename: ");
+  scanf("%s", report);
   printf("Enter payment amount per hour: ");
-  scanf("%lf", &hour_payment);
+  scanf("%lf", &payment);
   puts("");
-  sprintf(cmd, "build\\reporter.exe %s %s %lf", binary_path, report_path, hour_payment);
+  sprintf(cmd, "build\\reporter.exe %s %s %lf", binary, report, payment);
   await(cmd);
-  printf("Report saved to \"%s\" with the following contents:\n", report_path);
-  cat(report_path, "r");
+  printf("Report saved to \"%s\" with the following contents:\n", report);
+  cat(report, 0);
 
   return 0;
 }

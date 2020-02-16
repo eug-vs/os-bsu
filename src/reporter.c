@@ -7,13 +7,13 @@
 int main(int argc, char** argv) {
   FILE* file = fopen(argv[1], "rb");
   FILE* report = fopen(argv[2], "w+");
-  double hour_payment = strtod(argv[3], NULL);
+  double payment = strtod(argv[3], NULL);
 
   fprintf(report, HEADLINE_TEMPLATE, argv[1], "Id", "Name", "Hours", "Salary");
 
   Employee e;
   while(fread(&e, sizeof(Employee), 1, file)) {
-    fprintf(report, ROW_TEMPLATE, e.num, e.name, e.hours, e.hours * hour_payment);
+    fprintf(report, ROW_TEMPLATE, e.num, e.name, e.hours, e.hours * payment);
   };
 
   fclose(file);

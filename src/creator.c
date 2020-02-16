@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
     scanf("%s", e.name);
     printf("Hours: ");
     scanf("%lf", &e.hours);
-    printf("\n");
+    puts("");
     fwrite(&e, sizeof(Employee), 1, file);
   }
 
