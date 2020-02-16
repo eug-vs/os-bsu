@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
 
   Employee e;
   while(fread(&e, sizeof(Employee), 1, file)) {
-    fprintf(report, ROW_TEMPLATE, e.num, e.name, e.hours, e.hours * payment);
+    fprintf(report, ROW_TEMPLATE, e.id, e.name, e.hours, e.hours * payment);
   };
 
   fclose(file);

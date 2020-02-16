@@ -8,7 +8,7 @@ int main(int argc, char** argv) {
   for (int i = 0; i < records; i++) {
     Employee e;
     printf("Employee #");
-    scanf("%d", &e.num);
+    scanf("%d", &e.id);
     printf("Name: ");
     scanf("%s", e.name);
     printf("Hours: ");
