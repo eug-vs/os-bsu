@@ -1,8 +1,9 @@
-#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "employee.h"
 
 #define HEADLINE_TEMPLATE "Report for file: %s \n\n%-10s%-10s%-10s%-10s\n"
 #define ROW_TEMPLATE "%-10d%-10s%-10g%-10g\n"
-
 
 int main(int argc, char** argv) {
   FILE* file = fopen(argv[1], "rb");

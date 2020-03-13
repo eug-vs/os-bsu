@@ -1,29 +1,6 @@
-#include "header.h"
-
-
-void await(char* cmd) {
-  STARTUPINFO info = {sizeof(info)};
-  PROCESS_INFORMATION processInfo;
-
-  if (CreateProcess(NULL, cmd, NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo)) {
-    WaitForSingleObject(processInfo.hProcess, INFINITE);
-  } else puts("Error while creating process!");
-}
-
-void cat(char* filepath, int is_binary) {
-  char c;
-  FILE* file;
-
-  if ((file = fopen(filepath, is_binary? "rb" : "r"))) {
-    do {
-      c = fgetc(file);
-      printf("%c", c);
-    } while (c != EOF);
-    printf("\n\n");
-    fclose(file);
-  } else puts("Error while reading file!");
-}
-
+#include <stdio.h>
+#include "await.h"
+#include "cat.h"
 
 int main() {
   char cmd[256];
