@@ -14,7 +14,7 @@ int main() {
   printf("Enter records number: ");
   scanf("%s", records);
   puts("");
-  sprintf(cmd, "build\\creator.exe %s %s", binary, records);
+  sprintf(cmd, "bin\\creator.exe %s %s", binary, records);
   await(cmd);
   printf("Binary file saved to \"%s\" with the following contents:\n", binary);
   cat(binary, 1);
@@ -24,7 +24,7 @@ int main() {
   printf("Enter payment amount per hour: ");
   scanf("%lf", &payment);
   puts("");
-  sprintf(cmd, "build\\reporter.exe %s %s %lf", binary, report, payment);
+  sprintf(cmd, "bin\\reporter.exe %s %s %lf", binary, report, payment);
   await(cmd);
   printf("Report saved to \"%s\" with the following contents:\n", report);
   cat(report, 0);

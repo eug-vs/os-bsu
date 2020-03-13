@@ -1,1 +1,4 @@
-build
+# Output
+build/
+bin/
+
