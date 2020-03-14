@@ -7,6 +7,7 @@ void await(char* cmd) {
 
   if (CreateProcess(NULL, cmd, NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo)) {
     WaitForSingleObject(processInfo.hProcess, INFINITE);
+    CloseHandle(processInfo.hProcess);
   } else puts("Error while creating process!");
 }
 
