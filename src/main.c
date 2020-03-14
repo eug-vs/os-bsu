@@ -31,6 +31,7 @@ int main() {
   printf("Report saved to \"%s\" with the following contents:\n", report);
   cat(report, 0);
 
+  scanf("");
   return 0;
 }
 
