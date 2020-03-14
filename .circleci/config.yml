@@ -1,0 +1,15 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: purplekarrot/mingw-w64-i686
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+          name: Compile executables
+          command: make && ls bin
+
