@@ -1,9 +1,7 @@
 version: 2
 
-defaults: &defaults
-
 jobs:
-  checkout_and_compile:
+  compile:
     working_directory: ~/repo
     docker:
       - image: purplekarrot/mingw-w64-i686
@@ -13,32 +11,34 @@ jobs:
 
       - run:
           name: Compile executables
-          command: make && ls bin
+          command: make
 
       - persist_to_workspace:
           root: .
           paths:
             - bin
-            - .git
-  
+
+
   push_binaries:
     working_directory: ~/repo
     docker:
       - image: cimg/base:2020.01
 
     steps:
+      - checkout
+
       - attach_workspace:
           at: .
 
       - run:
-          name: Install hub
+          name: Create zip archive
+          command: zip -r binaries.zip bin
+
+      - run:
+          name: Install Hub
           command: |
             curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
             mv bin/hub hub
-
-      - run:
-          name: Create zip archive
-          command: zip -r binaries.zip bin
 
       - run:
           name: Publish a release
@@ -50,11 +50,11 @@ workflows:
 
   build:
     jobs:
-      - checkout_and_compile
+      - compile
 
   deploy:
     jobs:
-      - checkout_and_compile:
+      - compile:
           filters:
             branches:
               ignore: /.*/
@@ -67,5 +67,5 @@ workflows:
             tags:
               only: /.*/
           requires:
-            - checkout_and_compile
+            - compile
 
