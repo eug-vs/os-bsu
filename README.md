@@ -8,6 +8,7 @@ This compiler is needed for assembling `WinAPI` applications:
 ```bash
 sudo apt-get install mingw-w64
 ```
+**NOTE**: if linker exits with error (`ld returned 1`), try using `c++` postfix (instead of `gcc`) in a `$WINCC` var in a Makefile.
 
 ### Make
 Make is a **crucial** tool for build automation:
@@ -20,6 +21,7 @@ Wine is used for running compiled programs:
 ```bash
 sudo apt-get install wine64
 ```
+**NOTE**: if some dll's are missing, you might want to add your `/usr/i686-w64-mingw-32/bin/` to Wine `PATH`.
 
 ## Compiling
 Makefile is already preconfigured to use **mingw-64** compiler, so project is built with the simple command:
